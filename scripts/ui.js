@@ -1,3 +1,4 @@
+// render + sort + search logic
 import { getRecords, deleteRecord } from './state.js';
 import { compileRegex, highlight } from './search.js';
 
