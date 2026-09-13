@@ -49,6 +49,7 @@ export function setSort(key) {
   sortKey = key;
 }
 
+// dashboard stats + cap logic
 export function renderStats() {
   const records = getRecords();
   const total = records.length;
