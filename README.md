@@ -39,4 +39,4 @@ Open [tests.html](./tests.html) in a browser; results print to the page.
 Live demo: https://kmaster-alt.github.io/finance-tracker/
 
 
-Demo video: []
+Demo video:[ ]
