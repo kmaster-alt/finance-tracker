@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Finance Tracker</title>
+<link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header>
+  <h1>Finance Tracker</h1>
+  <nav aria-label="Primary">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#records">Records</a></li>
+      <li><a href="#form">Add/Edit</a></li>
+      <li><a href="#settings">Settings</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <section id="about" aria-labelledby="about-h">
+    <h2 id="about-h">About</h2>
+    <p>Track spending, categorize it, and search transactions with regex.</p>
+    <p>Contact: <a href="https://github.com/kmaster-alt">GitHub</a> · your-email@example.com</p>
+  </section>
+
+  <section id="dashboard" aria-labelledby="dash-h">
+    <h2 id="dash-h">Dashboard</h2>
+    <div class="stats-grid" id="statsGrid"></div>
+    <p id="capStatus" role="status" aria-live="polite"></p>
+    <div id="trendChart" class="trend-chart" aria-label="Spending in the last 7 days"></div>
+  </section>
+
+  <section id="records" aria-labelledby="rec-h">
+    <h2 id="rec-h">Records</h2>
+    <div class="search-bar">
+      <label for="searchInput">Regex search</label>
+      <input type="text" id="searchInput" placeholder="e.g. (coffee|tea)">
+      <label><input type="checkbox" id="caseInsensitive" checked> Case-insensitive</label>
+      <span id="searchError" role="status" aria-live="polite"></span>
+    </div>
+    <div class="sort-bar">
+      <button data-sort="date">Date ↕</button>
+      <button data-sort="description">Description A↕Z</button>
+      <button data-sort="amount">Amount ↕</button>
+    </div>
+    <table id="recordsTable">
+      <thead>
+        <tr><th>Description</th><th>Amount</th><th>Category</th><th>Date</th><th>Actions</th></tr>
+      </thead>
+      <tbody id="recordsBody"></tbody>
+    </table>
+  </section>
+
+  <section id="form" aria-labelledby="form-h">
+    <h2 id="form-h">Add / Edit Transaction</h2>
+    <form id="recordForm" novalidate>
+      <input type="hidden" id="recordId">
+      <div class="field">
+        <label for="description">Description</label>
+        <input type="text" id="description" required>
+        <span class="error" id="descriptionError" role="status" aria-live="polite"></span>
+      </div>
+      <div class="field">
+        <label for="amount">Amount</label>
+        <input type="text" id="amount" required inputmode="decimal">
+        <span class="error" id="amountError" role="status" aria-live="polite"></span>
+      </div>
+      <div class="field">
+        <label for="category">Category</label>
+        <select id="category">
+          <option>Food</option><option>Books</option><option>Transport</option>
+          <option>Entertainment</option><option>Fees</option><option>Other</option>
+        </select>
+        <span class="error" id="categoryError" role="status" aria-live="polite"></span>
+      </div>
+      <div class="field">
+        <label for="date">Date</label>
+        <input type="text" id="date" placeholder="YYYY-MM-DD" required>
+        <span class="error" id="dateError" role="status" aria-live="polite"></span>
+      </div>
+      <button type="submit">Save</button>
+    </form>
+  </section>
+
+  <section id="settings" aria-labelledby="set-h">
+    <h2 id="set-h">Settings</h2>
+    <div class="field">
+      <label for="capInput">Monthly spending cap</label>
+      <input type="text" id="capInput" inputmode="decimal">
+    </div>
+    <fieldset>
+      <legend>Currency rates (base = USD)</legend>
+      <label for="rateEUR">1 USD in EUR</label>
+      <input type="text" id="rateEUR" inputmode="decimal" value="0.92">
+      <label for="rateGBP">1 USD in GBP</label>
+      <input type="text" id="rateGBP" inputmode="decimal" value="0.78">
+    </fieldset>
+    <button id="exportBtn">Export JSON</button>
+    <label for="importFile" class="button-like">Import JSON</label>
+    <input type="file" id="importFile" accept="application/json" hidden>
+    <span id="ioStatus" role="status" aria-live="polite"></span>
+  </section>
+</main>
+
+<footer>
+  <p>Built for the Responsive UI assignment.</p>
+</footer>
+
+<script type="module" src="scripts/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Tests</title></head>
+<body>
+<pre id="out"></pre>
+<script type="module">
+import { validateRecord } from './scripts/validators.js';
+
+const cases = [
+  [{ description: "Lunch", amount: "12.50", category: "Food", date: "2025-09-25" }, true],
+  [{ description: " Lunch", amount: "12.50", category: "Food", date: "2025-09-25" }, false],
+  [{ description: "the the cafeteria", amount: "12.50", category: "Food", date: "2025-09-25" }, false],
+  [{ description: "Lunch", amount: "12.5.0", category: "Food", date: "2025-09-25" }, false],
+  [{ description: "Lunch", amount: "12.50", category: "Food123", date: "2025-09-25" }, false],
+  [{ description: "Lunch", amount: "12.50", category: "Food", date: "2025-13-01" }, false],
+];
+
+let log = "";
+cases.forEach(([input, expectValid], i) => {
+  const errors = validateRecord(input);
+  const isValid = Object.keys(errors).length === 0;
+  log += `Test ${i + 1}: ${isValid === expectValid ? "PASS" : "FAIL"}\n`;
+});
+document.getElementById("out").textContent = log;
+</script>
+</body></html>
