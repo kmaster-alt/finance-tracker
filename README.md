@@ -31,10 +31,10 @@
 - Table converts to labeled cards under 480px
 
 ## Run locally
-Open `index.html` in a browser (or use the VS Code Live Server extension).
+Open [index.html](./index.html) in a browser (or use the VS Code Live Server extension).
 
 ## Run tests
-Open `tests.html` in a browser; results print to the page.
+Open [tests.html](./tests.html) in a browser; results print to the page.
 
 Live demo: https://kmaster-alt.github.io/finance-tracker/
 
