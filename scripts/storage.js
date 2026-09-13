@@ -1,4 +1,3 @@
-// localStorage logic
 import { patterns } from './validators.js';
 
 const KEY = 'finance-tracker:data';
