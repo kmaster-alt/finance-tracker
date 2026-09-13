@@ -6,6 +6,14 @@ import { isValidImport } from './storage.js';
 const form = document.getElementById('recordForm');
 const fields = ['description', 'amount', 'category', 'date'];
 
+fields.forEach(f => {
+  document.getElementById(f).addEventListener('input', () => {
+    const data = Object.fromEntries(fields.map(k => [k, document.getElementById(k).value]));
+    const errors = validateRecord(data);
+    document.getElementById(f + 'Error').textContent = errors[f] || '';
+  });
+});
+
 function edit(id) {
   const r = getRecords().find(r => r.id === id);
   if (!r) return;
@@ -67,4 +75,12 @@ document.getElementById('importFile').addEventListener('change', e => {
 });
 
 subscribe(refresh);
+
+if (getRecords().length === 0) {
+  fetch('./seed.json')
+    .then(r => r.json())
+    .then(data => replaceAll(data))
+    .catch(() => {});
+}
+
 refresh();

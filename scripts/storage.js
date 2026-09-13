@@ -1,3 +1,5 @@
+import { patterns } from './validators.js';
+
 const KEY = 'finance-tracker:data';
 
 export function load() {
@@ -12,6 +14,12 @@ export function save(data) {
 }
 
 export function isValidImport(data) {
-  return Array.isArray(data) && data.every(r =>
-    r.id && r.description && typeof r.amount === 'number' && r.category && r.date);
+  if (!Array.isArray(data)) return false;
+  return data.every(r =>
+    typeof r.id === 'string' &&
+    patterns.description.test(r.description) &&
+    typeof r.amount === 'number' &&
+    patterns.category.test(r.category) &&
+    patterns.date.test(r.date)
+  );
 }

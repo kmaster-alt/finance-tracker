@@ -20,6 +20,11 @@ export function renderTable(onEdit) {
 
   if (re) rows = rows.filter(r => re.test(r.description) || re.test(r.category));
 
+  if (rows.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="5" role="status">No matching records found.</td></tr>`;
+    return;
+  }
+
   tbody.innerHTML = rows.map(r => `
     <tr>
       <td data-label="Description">${highlight(r.description, re)}</td>
