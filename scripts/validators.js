@@ -1,3 +1,4 @@
+// regex validation rules
 export const patterns = {
   description: /^\S(?:.*\S)?$/,
   amount: /^(0|[1-9]\d*)(\.\d{1,2})?$/,
